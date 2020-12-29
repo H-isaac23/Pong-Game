@@ -12,7 +12,7 @@ pygame.display.set_caption('Pong')
 class Player:
     def __init__(self, width, height):
         self.player_score = 0
-        self.player = pygame.Rect(width-20, height/2, 10, 140)
+        self.player = pygame.Rect(width-20-300, height/2, 1000, 140)
         self.player_speed = 0
 
 class Opponent:
@@ -47,12 +47,23 @@ def Ball_Animation(ball1, player1, opponent1):
         ball1.ball_speed_y *= -1
 
     # Ball Collission
-    if ball1.ball.colliderect(player1.player):
-        ball1.ball_speed_x *= -1.1
-        ball1.ball.x -= 3
+    if ball1.ball.colliderect(player1.player) and ball1.ball_speed_x > 1:
+        if abs(ball1.ball.right - player1.player.left) < 10:
+            ball1.ball_speed_x *= -1.1
+        elif abs(ball1.ball.top - player1.player.bottom) < 10 and ball1.ball_speed_y < 0:
+            ball1.ball_speed_y *= -1
+        elif abs(ball1.ball.bottom - player1.player.top) < 10 and ball1.ball_speed_y > 0:
+            ball1.ball_speed_y *= -1
+
     if ball1.ball.colliderect(opponent1.opponent):
         ball1.ball_speed_x *= -1.1
-        ball1.ball.x += 3
+        if abs(ball1.ball.right - opponent1.opponent.left) < 10:
+            ball1.ball_speed_x *= -1.1
+        elif abs(ball1.ball.top - opponent1.opponent.bottom) < 10 and ball1.ball_speed_y < 0:
+            ball1.ball_speed_y *= -1
+        elif abs(ball1.ball.bottom - opponent1.opponent.top) < 10 and ball1.ball_speed_y > 0:
+            ball1.ball_speed_y *= -1
+
 
 def player_animation(player1):
     player1.player.y += player1.player_speed
