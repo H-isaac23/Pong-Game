@@ -11,10 +11,10 @@ def ball_animation():
         ball_restart()
 
     if ball.colliderect(player):
-        ball_speed_x *= -1
+        ball_speed_x *= -1.1
         ball.x -= 3
     if ball.colliderect(opponent):
-        ball_speed_x *= -1
+        ball_speed_x *= -1.1
         ball.x += 3
 
 def player_animation():
@@ -37,6 +37,7 @@ def opponent_ai():
 def ball_restart():
     global ball_speed_x, ball_speed_y
     ball.center = (screen_width/2, screen_height/2)
+    ball_speed_x = 7
     ball_speed_y *= random.choice((1, -1))
     ball_speed_x *= random.choice((1, -1))
 
