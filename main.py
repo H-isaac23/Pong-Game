@@ -10,8 +10,12 @@ def ball_animation():
     if ball.left <= 0 or ball.right >= screen_width:
         ball_restart()
 
-    if ball.colliderect(player) or ball.colliderect(opponent):
+    if ball.colliderect(player):
         ball_speed_x *= -1
+        ball.x -= 3
+    if ball.colliderect(opponent):
+        ball_speed_x *= -1
+        ball.x += 3
 
 def player_animation():
     player.y += player_speed
