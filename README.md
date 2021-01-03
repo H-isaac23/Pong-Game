@@ -1,5 +1,5 @@
 # Pong-Game
-This is a personal project made in order to learn about pygame.
+This is a personal project made in order to learn about pygame, from the tutorial of the Youtube channel called "Clear Code"
 
 ## Libraries
 - Pygame, sys, random
